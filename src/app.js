@@ -15,7 +15,9 @@ server.use(morgan('dev'));
 server.use(bodyParser.json());
 // Rutas
 //require('./routes/authenticate')(server);
-
+require ('./routes/almacen')(server);
+require ('./routes/log')(server);
+require ('./routes/user')(server);
 /*//Middleware to check whether you're auth - Todas las rutas arriba estan desprotegidas
 server.use(function (req, res, next) {
     // check header or url parameters or post parameters for token

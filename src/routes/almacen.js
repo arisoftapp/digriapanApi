@@ -13,5 +13,5 @@ module.exports = function (app) {
         almacen.getAlmacenById(id, (err, data) => {
             res.json({almacen: data});
         });
-    });
+    }); 
 } 
