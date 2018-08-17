@@ -18,6 +18,7 @@ server.use(bodyParser.json());
 require ('./routes/almacen')(server);
 require ('./routes/log')(server);
 require ('./routes/user')(server);
+require ('./routes/existencia')(server);
 /*//Middleware to check whether you're auth - Todas las rutas arriba estan desprotegidas
 server.use(function (req, res, next) {
     // check header or url parameters or post parameters for token
