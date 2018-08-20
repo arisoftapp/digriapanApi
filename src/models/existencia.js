@@ -7,12 +7,26 @@ let existenciaModel = {};
 
 existenciaModel.getExistencia = (callback) => {
     if (dbCOBOL) {
-        dbCOBOL.query("SELECT * FROM PUBLIC.INVEXI", function(err, rows, moreResultSets){
-			if(err){
-				console.log(err.message);
-			};
-            callback(null, rows);
-		});
+        dbCOBOL.query(`SELECT 
+                    c.ART_COD1 AS 'codigoProducto',
+                    c.ART_DESC1 AS 'producto',
+                    b.ALM_LLAVE AS 'idalmacen',
+                    b.ALM_NOMBRE AS 'almacen',
+                    a.EXI_ACT as 'existenciaActual'
+                 FROM
+                    PUBLIC.INVEXI AS a
+                        INNER JOIN
+                    PUBLIC.INVALM AS b ON a.EXI_ALM = b.ALM_LLAVE
+                        INNER JOIN
+                    PUBLIC.INVART AS c ON a.EXI_ART = c.ART_COD1`
+                 , function(err, rows, moreResultSets) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                callback(null, rows);
+            }
+        }); 
     }
 };
 
