@@ -7,6 +7,13 @@ module.exports = function (app) {
         user.getUserByUsername(username, (err, data) => {
             res.json({user: data});
         });
-    }); 
+    });
+
+    app.get('/user/dispositivos/:username', (req, res) => {
+        var usuario = req.params.username;
+        user.getDeviceID(usuario, (err, data) => {
+            res.json({dispositivo: data});
+        });
+    });
 
 }
